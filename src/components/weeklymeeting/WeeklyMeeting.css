@@ -1,0 +1,29 @@
+h4.weekly-meeting-title {
+  margin-bottom: 2rem;
+}
+
+.meeting-notes-text-field {
+  width: 100%;
+}
+
+.meeting-notes-text-field textarea {
+  height: 30vh !important;
+}
+
+.notes-data-grid {
+  width: 60%;
+}
+.notes-todos {
+  width: 30%;
+}
+hr.notes-vr {
+  margin-left: 1rem !important;
+  margin-right: 1rem !important;
+}
+hr.notes-hr {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+.notes-box-top {
+  justify-content: space-between;
+}

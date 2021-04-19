@@ -1,0 +1,60 @@
+.note-box {
+  width: 100%;
+}
+.note-edit-panel-active {
+  width: 100%;
+}
+
+.note-edit-panel-active-buttons {
+  justify-content: flex-end;
+}
+.note-edit-panel {
+  justify-content: flex-end;
+  margin: 0 !important;
+  width: 100%;
+}
+.edit-button {
+  color: #ff6762 !important;
+}
+.save-button {
+  color: #ff6762 !important;
+}
+.cancel-button {
+  color: #ffffff !important;
+}
+.note-text-field p {
+  margin: 0 !important;
+}
+
+.note-text-field h1 {
+  margin: 0rem !important;
+}
+.note-text-field h2 {
+  margin: 0rem !important;
+}
+.note-text-field h3 {
+  margin: 0rem !important;
+}
+.note-text-field h4 {
+  margin: 0rem !important;
+}
+.note-text-field h5 {
+  margin: 0rem !important;
+}
+.note-text-field h6 {
+  margin: 0rem !important;
+}
+.note-text-field p {
+  margin: 0rem !important;
+}
+.note-text-field li {
+  margin: 0rem !important;
+}
+
+.note-text-field ul {
+  margin: 0rem !important;
+}
+
+.note-text-field ol {
+  margin: 0rem !important;
+}

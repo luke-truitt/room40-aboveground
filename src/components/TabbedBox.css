@@ -1,0 +1,9 @@
+.tabbed-box-appbar {
+  border-radius: 5px 5px 0px 0px;
+  background-color: transparent !important;
+}
+.tabbed-box-card {
+  background-color: transparent !important;
+  height: 80vh;
+  overflow: scroll !important;
+}

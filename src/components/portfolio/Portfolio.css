@@ -1,0 +1,84 @@
+.port-box {
+}
+.port-header {
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  height: 8rem;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.port-header-card {
+  flex: 0.3;
+  margin-right: 1.5rem !important;
+  height: 6rem;
+  background-color: transparent !important;
+
+  align-items: center;
+}
+.MuiDataGrid-toolbar button {
+  color: #ff6762 !important;
+}
+.MuiDataGridPanel label {
+  color: #ffffff !important;
+}
+.MuiDataGridPanel button {
+  color: #ffffff !important;
+}
+
+.MuiDataGridPanel input {
+  color: #ffffff !important;
+}
+.MuiDataGridPanel span {
+  color: #ffffff !important;
+}
+.port-header-text {
+  flex: 0.5;
+  margin-right: 1.5rem !important;
+  height: 6rem;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+}
+.port-last-updated-card {
+  flex: 0.2;
+  height: 6rem;
+  background-color: transparent !important;
+}
+.port-last-updated-card-content {
+  padding-top: 0rem !important;
+}
+h3.port-title {
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+.port-header-card-content {
+  padding-left: 10px;
+}
+.port-header-card-content-box {
+  justify-content: space-between;
+}
+.port-header-card-row {
+  justify-content: space-between;
+  display: flex;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.MuiDataGridColumnsPanel {
+  background-color: red !important;
+}
+.port-header-card-row-label {
+  text-align: left;
+  display: flex;
+  font-weight: 800;
+}
+
+.port-header-card-row-value {
+  text-align: right;
+  display: flex;
+}
+
+div[class^="MuiDataGridPanelWrapper-root"] * {
+  color: white !important;
+  border-color: white !important;
+}

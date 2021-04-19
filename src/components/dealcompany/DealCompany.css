@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+
+.portco-box {
+  margin-bottom: 2rem;
+}
+.portco-overview-buttons {
+  justify-content: space-between;
+  width: 150px;
+}
+
+.portco-overview-deck-button {
+  background-color: #ff6762 !important;
+  color: #141414 !important;
+  font-weight: 700 !important;
+  justify-content: space-between;
+  margin-bottom: 10px !important;
+}
+.portco-overview-note-button {
+  color: #ff6762 !important;
+  background-color: transparent !important;
+  border-color: #ff6762 !important;
+  font-weight: 700 !important;
+  justify-content: space-between;
+}
+.portco-overview-top {
+  justify-content: space-between;
+}
+img.portco-logo {
+  max-width: 100%;
+  margin: auto;
+  display: flex;
+}
+.portco-logo-box {
+  width: 30%;
+  margin-bottom: 2rem;
+}
+.portco-overview-label {
+  font-weight: 800 !important;
+  line-height: 1.5rem !important;
+}
+.portco-overview-card {
+  padding: 1rem;
+}
+.button-icon {
+  font-size: 20px !important;
+}
