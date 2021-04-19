@@ -44,7 +44,10 @@ function Note(props) {
     props.onEditButton(props.id);
   };
 
-  const onSaveButton = () => {};
+  const onSaveButton = () => {
+    setActive(false);
+    props.onSaveButton(props.id, noteValue, titleValue);
+  };
 
   const EditPanel = (
     <Box className="note-edit-panel cols">
@@ -62,9 +65,7 @@ function Note(props) {
             <Button
               className="save-button"
               size="medium"
-              onClick={() =>
-                props.onSaveButton(props.id, noteValue, titleValue)
-              }
+              onClick={() => onSaveButton()}
               color="primary"
             >
               Save
