@@ -7,3 +7,9 @@
   height: 80vh;
   overflow: scroll !important;
 }
+.tab-panel {
+  height: 100% !important;
+}
+.tabpanel-box {
+  height: 100%;
+}

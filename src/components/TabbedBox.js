@@ -24,8 +24,8 @@ function TabPanel(props) {
         {...other}
       >
         {value === index && (
-          <Box p={3}>
-            <Typography>{children}</Typography>
+          <Box p={3} className="tabpanel-box">
+            {children}
           </Box>
         )}
       </div>
@@ -65,7 +65,7 @@ function TabbedBox(props) {
 
       <Card className="tabbed-box-card" variant="outlined">
         {tabs.map((tab, i) => (
-          <TabPanel index={i} value={value}>
+          <TabPanel className="tab-panel" index={i} value={value}>
             {tab.component}
           </TabPanel>
         ))}

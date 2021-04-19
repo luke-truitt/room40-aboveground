@@ -87,7 +87,7 @@ function Note(props) {
 
   return (
     <Accordion
-      onChange={() => props.onExpandButton(props.id)}
+      // onChange={() => props.onExpandButton(props.id)}
       expanded={props.expanded}
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -165,6 +165,7 @@ function Notes(props) {
         {notes.map((note, i) => {
           return (
             <Note
+              expanded={expanded === note.id}
               canExpand={canExpand}
               onEditButton={onEditButton}
               onCancelButton={onCancelButton}

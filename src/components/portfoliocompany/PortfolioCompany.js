@@ -18,7 +18,7 @@ import Assessment from "./Assessment";
 import Financing from "./Financing";
 import AddIcon from "@material-ui/icons/Add";
 import companyLogo from "./../../resources/images/guesthouse-logo.png";
-import Notes from "../Notes/Notes";
+import Notes from "../Notes/Notes2";
 
 function PortfolioCompany(props) {
   console.log(props.notes);
@@ -29,8 +29,8 @@ function PortfolioCompany(props) {
     { title: "Memo", component: memoComponent },
     { title: "Assessment", component: AssessmentComponent },
     { title: "Financing", component: FinancingComponent },
-    { title: "Metrics", component: "AnalyticsComponent" },
-    { title: "Deal Notes (Archived)", component: "AnalyticsComponent" },
+    // { title: "Metrics", component: "AnalyticsComponent" },
+    // { title: "Deal Notes (Archived)", component: "AnalyticsComponent" },
   ];
   return (
     <ThemeProvider theme={primaryTheme}>

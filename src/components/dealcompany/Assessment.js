@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
   TextField,
+  Divider,
 } from "@material-ui/core";
 import { primaryTheme } from "../../utils/constants";
 import "./../../utils/global.css";
@@ -50,12 +51,15 @@ function Assessment(props) {
             </CardContent>
           </Card>
         </Box>
-        {/* TODO Add divider */}
+        <Divider />
         <Box className="history-box rows">
           <Box className="history-content cols">
             <Card className="history-chart">
               <CardContent>
                 <DataGrid
+                  autoHeight
+                  hideFooterRowCount
+                  hideFooterPagination
                   rows={props.history.rows}
                   columns={props.history.columns}
                   autoPageSize

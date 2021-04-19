@@ -77,7 +77,7 @@ function WeeklyMeeting(props) {
               </FormGroup>
             </FormControl>
           </Box>
-          <Divider className="notes-vr" orientation="vertical" flexItem />
+          <Divider className="vr" orientation="vertical" flexItem />
           <DataGrid
             autoHeight
             autoPageSize
@@ -89,7 +89,7 @@ function WeeklyMeeting(props) {
             columns={notesColumns}
           />
         </Box>
-        <Divider className="notes-hr" />
+        <Divider className="hr" />
         <Box className="notes-box-bottom">
           <TextField
             multiline

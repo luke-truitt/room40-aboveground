@@ -54,10 +54,10 @@ const financingData = {
   history: {
     columns: [
       { field: "round", headerName: "Round", width: 100 },
-      { field: "date", headerName: "Date", width: 100 },
+      { field: "date", headerName: "Date", width: 100, hide: true },
       { field: "size", headerName: "Size", width: 150 },
       { field: "value", headerName: "Value (Post)", width: 150 },
-      { field: "investment", headerName: "Investment", width: 150 },
+      { field: "investment", headerName: "Investment", width: 150, hide: true },
       { field: "stake", headerName: "Stake", width: 100 },
       { field: "commentary", headerName: "Commentary", width: 200 },
       { field: "coinvestors", headerName: "Co-Investors", width: 150 },
@@ -162,6 +162,13 @@ const notes = [
   },
 ];
 export const portfolioCompanyData = {
+  notes: notes,
+  overview: portfolioCompanyOverview,
+  assessmentData: assessmentData,
+  financingData: financingData,
+};
+
+export const dealCompanyData = {
   notes: notes,
   overview: portfolioCompanyOverview,
   assessmentData: assessmentData,
