@@ -39,6 +39,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import { UseNavStyles, primaryTheme } from "./utils/constants";
 import { homeData, portfolioCompanyData, portfolioData } from "./utils/Data";
 import WeeklyMeeting from "./components/weeklymeeting/WeeklyMeeting";
+import * as api from "./utils/api";
 
 function App() {
   const drawerWidth = 240;
@@ -53,6 +54,7 @@ function App() {
     portfolioCompany: null,
     deals: null,
   });
+  api.GetActivities();
 
   const handleDrawerOpen = () => {
     setOpen(true);

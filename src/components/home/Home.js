@@ -20,6 +20,33 @@ import "./../../utils/global.css";
 import "./Home.css";
 import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 
+const {
+  REACT_APP_API_BASE_URL,
+  REACT_APP_USER_URL,
+  REACT_APP_COMPANY_URL,
+  REACT_APP_DEAL_URL,
+  REACT_APP_DEAL_INVESTOR_URL,
+  REACT_APP_ACTIVITIES_URL,
+  REACT_APP_ASSESSMENTS_URL,
+  REACT_APP_EVENTS_URL,
+  REACT_APP_EVENT_PARTICIPANTS_URL,
+  REACT_APP_HIGHLIGHTS_URL,
+  REACT_APP_NOTES_URL,
+  REACT_APP_USER_COMPANY_URL,
+  REACT_APP_VOTE_URL,
+} = process.env;
+
+const axios = require("axios");
+function GetActivities() {
+  axios
+    .get(REACT_APP_API_BASE_URL + REACT_APP_ACTIVITIES_URL)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
 function Home(props) {
   const AgendaCard = () => {
     return (
