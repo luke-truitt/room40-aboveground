@@ -31,11 +31,13 @@ function Home(props) {
           <FormGroup column>
             {props.agenda.map((i, idx) => {
               return (
-                <FormControlLabel
-                  className="home-agenda-item"
-                  control={<Checkbox name={"checked-" + idx} />}
-                  label={i}
-                />
+                <div>
+                  <FormControlLabel
+                    className="home-agenda-item"
+                    control={<Checkbox name={"checked-" + idx} />}
+                    label={i}
+                  />
+                </div>
               );
             })}
           </FormGroup>
@@ -59,6 +61,7 @@ function Home(props) {
             rows={props.deals.rows}
             columns={props.deals.columns}
             autoPageSize
+            onCellClick={() => props.openDealCompany(0)}
           />
         </CardContent>
       </Card>
@@ -77,6 +80,7 @@ function Home(props) {
               hideFooterRowCount
               hideFooterPagination
               autoHeight
+              //TODO
               onCellClick={() => props.openPortfolioCompany(0)}
               density="compact"
               className="data-grid"

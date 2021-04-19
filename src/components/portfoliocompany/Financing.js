@@ -1,7 +1,7 @@
 import React from "react";
-import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid, GridToolbar } from "@material-ui/data-grid";
 import { ThemeProvider, Box } from "@material-ui/core";
-
+import "./PortfolioCompany.css";
 import { primaryTheme } from "../../utils/constants";
 function Financing(props) {
   const active = props.active;
@@ -9,8 +9,13 @@ function Financing(props) {
   return (
     <ThemeProvider theme={primaryTheme}>
       <Box className="financing-box rows">
-        {/*TODO: Add editing component*/}
         <DataGrid
+          components={{
+            Toolbar: GridToolbar,
+          }}
+          autoHeight
+          hideFooterRowCount
+          hideFooterPagination
           rows={props.history.rows}
           columns={props.history.columns}
           autoPageSize

@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
   TextField,
+  Divider,
 } from "@material-ui/core";
 import { primaryTheme } from "../../utils/constants";
 import "./../../utils/global.css";
@@ -16,53 +17,41 @@ function Assessment(props) {
     <ThemeProvider theme={primaryTheme}>
       <Box className="assessment-box rows">
         <Box className="current-box cols">
-          {/* TODO Add edit component*/}
-          <TextField
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-          <Card>
-            <CardContent>
-              <Typography variant="h5">Current Status</Typography>
-              <Typography variant="body">{props.status}</Typography>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent>
-              <Typography variant="h5">Recent Commentary</Typography>
-              <Typography variant="body">{props.commentary}</Typography>
-            </CardContent>
-          </Card>
-          {/* TODO Change to list*/}
-          <Card>
-            <CardContent>
-              <Typography variant="h5">RPVC TODOs</Typography>
-              {props.todo.map((i) => {
-                return (
-                  <Typography variant="body">
-                    {i}
-                    <br />
-                  </Typography>
-                );
-              })}
-            </CardContent>
-          </Card>
+          <Box className="status">
+            <Typography className="assessment-score" variant="h3">
+              3
+            </Typography>
+            <Typography variant="body">{props.status}</Typography>
+          </Box>
+          <Divider className="vr" flexItem orientation="vertical" />
+          <Box className="commentary">
+            <Typography variant="h5">Recent Commentary</Typography>
+            <Typography variant="body">{props.commentary}</Typography>
+          </Box>
+          <Divider className="vr" flexItem orientation="vertical" />
+          <Box className="ass-todos">
+            <Typography variant="h5">RPVC TODOs</Typography>
+            {props.todo.map((i) => {
+              return (
+                <Typography variant="body">
+                  {i}
+                  <br />
+                </Typography>
+              );
+            })}
+          </Box>
         </Box>
-        {/* TODO Add divider */}
+        <Divider className="hr" />
         <Box className="history-box rows">
           <Box className="history-content cols">
-            <Card className="history-chart">
-              <CardContent>
-                <DataGrid
-                  rows={props.history.rows}
-                  columns={props.history.columns}
-                  autoPageSize
-                />
-              </CardContent>
-            </Card>
-            <Typography variant="h3">CHART</Typography>
+            <DataGrid
+              autoHeight
+              hideFooterRowCount
+              hideFooterPagination
+              rows={props.history.rows}
+              columns={props.history.columns}
+              autoPageSize
+            />
           </Box>
         </Box>
       </Box>

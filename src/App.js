@@ -37,7 +37,12 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import InboxIcon from "@material-ui/icons/Inbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { UseNavStyles, primaryTheme } from "./utils/constants";
-import { homeData, portfolioCompanyData, portfolioData } from "./utils/Data";
+import {
+  homeData,
+  portfolioCompanyData,
+  portfolioData,
+  dealCompanyData,
+} from "./utils/Data";
 import WeeklyMeeting from "./components/weeklymeeting/WeeklyMeeting";
 
 function App() {
@@ -52,6 +57,7 @@ function App() {
     portfolio: portfolioData,
     portfolioCompany: null,
     deals: null,
+    dealCompany: null,
   });
 
   const handleDrawerOpen = () => {
@@ -71,6 +77,14 @@ function App() {
     setTab("PortfolioCompany");
   };
 
+  const openDealCompany = (id) => {
+    const newData = data;
+    //TODO switch to be dynamic
+    newData.dealCompany = dealCompanyData;
+    setData(newData);
+    setTab("DealCompany");
+  };
+
   const MainListItems = [
     { key: "Home", icon: <HomeIcon /> },
     { key: "Weekly Meeting", icon: <EventIcon /> },
@@ -78,7 +92,13 @@ function App() {
     { key: "Deals", icon: <WorkOutlineIcon /> },
   ];
   const Navigation = {
-    Home: <Home {...data.home} openPortfolioCompany={openPortfolioCompany} />,
+    Home: (
+      <Home
+        {...data.home}
+        openPortfolioCompany={openPortfolioCompany}
+        openDealCompany={openDealCompany}
+      />
+    ),
     "Weekly Meeting": <WeeklyMeeting />,
     Portfolio: (
       <Portfolio
@@ -88,6 +108,7 @@ function App() {
     ),
     Deals: <Deals />,
     PortfolioCompany: <PortfolioCompany {...data.portfolioCompany} />,
+    DealCompany: <DealCompany {...data.dealCompany} />,
   };
   console.log("hi again", data);
 

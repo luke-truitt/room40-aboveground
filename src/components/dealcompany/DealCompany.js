@@ -22,15 +22,20 @@ import Notes from "../Notes/Notes";
 
 function DealCompany(props) {
   console.log(props.notes);
-  const memoComponent = <Notes notes={props.notes} />;
-  const AssessmentComponent = <Assessment {...props.assessmentData} />;
-  const FinancingComponent = <Financing {...props.financingData} />;
+  const Overview = () => {
+    return <div />;
+  };
+  const Evaluation = () => {
+    return <div />;
+  };
+  const Files = () => {
+    return <div />;
+  };
+
   const tabs = [
-    { title: "Memo", component: memoComponent },
-    { title: "Assessment", component: AssessmentComponent },
-    { title: "Financing", component: FinancingComponent },
-    { title: "Metrics", component: "AnalyticsComponent" },
-    { title: "Deal Notes (Archived)", component: "AnalyticsComponent" },
+    { title: "Overview", component: <Overview /> },
+    // { title: "Evaluation", component: <Evaluation/> },
+    // { title: "Files", component: <Files/> },
   ];
   return (
     <ThemeProvider theme={primaryTheme}>

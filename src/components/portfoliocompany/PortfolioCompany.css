@@ -44,3 +44,44 @@ img.portco-logo {
 .button-icon {
   font-size: 20px !important;
 }
+
+.assessment-box {
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+.current-box {
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+.assessment-score {
+  color: #ff6762;
+}
+.status {
+  width: 30%;
+}
+.commentary {
+  width: 40%;
+}
+.ass-todos {
+  width: 30%;
+}
+
+.MuiDataGrid-toolbar button {
+  color: #ff6762 !important;
+}
+.MuiDataGridPanel label {
+  color: #ffffff !important;
+}
+.MuiDataGridPanel button {
+  color: #ffffff !important;
+}
+
+.MuiDataGridPanel input {
+  color: #ffffff !important;
+}
+.MuiDataGridPanel span {
+  color: #ffffff !important;
+}
