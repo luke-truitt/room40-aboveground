@@ -51,10 +51,14 @@ h3.deals-title {
 }
 .deals-header-card-row-label {
   text-align: left;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .deals-header-card-row-value {
   text-align: right;
   padding-left: 2rem;
+}
+
+.deals-header-card {
+  background-color: transparent !important;
 }

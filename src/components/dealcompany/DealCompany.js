@@ -14,11 +14,8 @@ import { primaryTheme } from "../../utils/constants";
 import "./DealCompany.css";
 import "./../../utils/global.css";
 import TabbedBox from "../TabbedBox";
-import Assessment from "./Assessment";
-import Financing from "./Financing";
 import AddIcon from "@material-ui/icons/Add";
 import companyLogo from "./../../resources/images/guesthouse-logo-dark.png";
-import Notes from "../Notes/Notes";
 import DealCompanyOverview from "./DealCompanyOverview";
 import { DataGrid } from "@material-ui/data-grid";
 

@@ -54,7 +54,7 @@ function DealsCompany() {
           Deals
         </Typography>
         <Box className="deals-header cols">
-          <Card className="deals-header-card">
+          <Card variant="outlined" className="deals-header-card">
             <CardContent className="deals-header-card-content">
               {HeaderCardContent}
             </CardContent>

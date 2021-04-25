@@ -12,21 +12,23 @@ const assessmentData = {
   ],
   history: {
     columns: [
-      { field: "assessment", headerName: "Assessment", width: 100 },
+      { field: "assessment", headerName: "Assessment", width: 150 },
       { field: "date", headerName: "Date", width: 100 },
       { field: "status", headerName: "Cost", width: 200 },
-      { field: "commentary", headerName: "Commentary", width: 200 },
+      { field: "commentary", headerName: "Commentary", width: 500 },
     ],
     rows: [
       {
         id: 1,
         assessment: 0,
+        date: "1/1/2021",
         status: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         commentary:
           "Integer sit amet libero dictum, porttitor eros vel, cursus nulla.",
       },
       {
         id: 2,
+        date: "1/1/2021",
         assessment: 0,
         status: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         commentary:
@@ -34,6 +36,7 @@ const assessmentData = {
       },
       {
         id: 3,
+        date: "1/1/2021",
         assessment: 0,
         status: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         commentary:
@@ -41,6 +44,7 @@ const assessmentData = {
       },
       {
         id: 4,
+        date: "1/1/2021",
         assessment: 0,
         status: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         commentary:

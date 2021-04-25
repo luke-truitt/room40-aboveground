@@ -19,8 +19,9 @@ import { primaryTheme } from "../../utils/constants";
 import "./../../utils/global.css";
 import "./WeeklyMeeting.css";
 import { DataGrid } from "@material-ui/data-grid";
-
+import { useState } from "react";
 import TabbedBox from "../TabbedBox";
+import ReactMarkdown from "react-markdown";
 
 const notesColumns = [
   { field: "company", headerName: "Company", width: 100 },
@@ -59,6 +60,84 @@ function WeeklyMeeting(props) {
     ],
   };
   const notes = props.notes;
+  const [notepadActive, setNotepadActive] = useState(false);
+  const [notepad, setNotepad] = useState("Notes");
+
+  const onCancelButton = (id) => {
+    //TODO change note values
+    setNotepadActive(false);
+  };
+  const onEditButton = (id) => {
+    setNotepadActive(true);
+  };
+
+  const onSaveButton = () => {
+    setNotepadActive(false);
+    // TODO send back to database
+  };
+
+  const EditPanel = (props) => {
+    return (
+      <Box className="note-edit-panel cols">
+        {notepadActive ? (
+          <div className="note-edit-panel-active rows">
+            <Divider />
+            <Box className="note-edit-panel-active-buttons cols">
+              <Button
+                className="cancel-button"
+                size="medium"
+                onClick={() => onCancelButton()}
+              >
+                Cancel
+              </Button>
+              <Button
+                className="save-button"
+                size="medium"
+                onClick={() => onSaveButton()}
+                color="primary"
+              >
+                Save
+              </Button>
+            </Box>
+          </div>
+        ) : (
+          <Button
+            className="edit-button"
+            size="medium"
+            onClick={() => onEditButton()}
+            color="primary"
+          >
+            Edit{" "}
+          </Button>
+        )}
+      </Box>
+    );
+  };
+  const handleChange = (event) => {
+    setNotepad(event.target.value);
+  };
+
+  const Notepad = () => {
+    return (
+      <Box className="notepad-box rows">
+        {notepadActive ? (
+          <TextField
+            className="notepad-text-field"
+            multiline
+            disabled={!notepadActive}
+            key={1}
+            value={notepad}
+            onChange={(evt, value) => setNotepad(value)}
+          />
+        ) : (
+          <ReactMarkdown className="notepad-text-field">
+            {notepad}
+          </ReactMarkdown>
+        )}
+        <EditPanel />
+      </Box>
+    );
+  };
   const Notes = () => {
     return (
       <Box className="notes-box rows">
@@ -91,11 +170,7 @@ function WeeklyMeeting(props) {
         </Box>
         <Divider className="hr" />
         <Box className="notes-box-bottom">
-          <TextField
-            multiline
-            variant="filled"
-            className="meeting-notes-text-field"
-          ></TextField>
+          <Notepad className="meeting-notes-text-field" />
         </Box>
       </Box>
     );

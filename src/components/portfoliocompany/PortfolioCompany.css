@@ -35,7 +35,7 @@ img.portco-logo {
   margin-bottom: 2rem;
 }
 .portco-overview-label {
-  font-weight: 800 !important;
+  font-weight: 700 !important;
   line-height: 1.5rem !important;
 }
 .portco-overview-card {
@@ -46,13 +46,16 @@ img.portco-logo {
 }
 
 .assessment-box {
-  justify-content: space-between;
+  justify-content: flex-start;
   height: 100%;
   width: 100%;
 }
+
+.assessment-box > *:first-child {
+  margin-bottom: 2rem;
+}
 .current-box {
   justify-content: space-between;
-  height: 100%;
   width: 100%;
 }
 
@@ -84,4 +87,23 @@ img.portco-logo {
 }
 .MuiDataGridPanel span {
   color: #ffffff !important;
+}
+
+.current-box > * {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+.current-box > *:first-child {
+  margin-left: 0rem !important;
+}
+
+.current-box > *:last-child {
+  margin-right: 0rem !important;
+}
+
+.history-grid {
+  padding-top: 1rem;
+
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
