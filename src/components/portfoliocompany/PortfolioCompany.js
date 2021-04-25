@@ -17,7 +17,7 @@ import TabbedBox from "../TabbedBox";
 import Assessment from "./Assessment";
 import Financing from "./Financing";
 import AddIcon from "@material-ui/icons/Add";
-import companyLogo from "./../../resources/images/guesthouse-logo.png";
+import companyLogo from "./../../resources/images/guesthouse-logo-dark.png";
 import Notes from "../Notes/Notes2";
 
 function PortfolioCompany(props) {

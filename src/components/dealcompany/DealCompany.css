@@ -1,46 +1,84 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 
-.portco-box {
+.dealco-box {
   margin-bottom: 2rem;
 }
-.portco-overview-buttons {
+.dealco-overview-buttons {
   justify-content: space-between;
   width: 150px;
 }
 
-.portco-overview-deck-button {
+.dealco-overview-deck-button {
   background-color: #ff6762 !important;
-  color: #141414 !important;
+  color: #fafafa !important;
   font-weight: 700 !important;
   justify-content: space-between;
   margin-bottom: 10px !important;
 }
-.portco-overview-note-button {
+.dealco-overview-note-button {
   color: #ff6762 !important;
   background-color: transparent !important;
   border-color: #ff6762 !important;
   font-weight: 700 !important;
   justify-content: space-between;
 }
-.portco-overview-top {
+.dealco-overview-top {
   justify-content: space-between;
 }
-img.portco-logo {
+img.dealco-logo {
   max-width: 100%;
   margin: auto;
   display: flex;
 }
-.portco-logo-box {
+.dealco-logo-box {
   width: 30%;
   margin-bottom: 2rem;
 }
-.portco-overview-label {
+.dealco-overview-label {
   font-weight: 800 !important;
   line-height: 1.5rem !important;
 }
-.portco-overview-card {
+.dealco-overview-card {
   padding: 1rem;
 }
 .button-icon {
   font-size: 20px !important;
 }
+.dealco-ov-notes {
+  max-width: 70%;
+}
+
+.dealco-ov-left {
+  min-width: 30%;
+  padding-right: 20px;
+}
+
+.dealco-ov-left > button {
+  color: #ff6762 !important;
+  background-color: transparent !important;
+  border-color: #ff6762 !important;
+  font-weight: 700 !important;
+  margin-bottom: 1rem;
+}
+.dealco-status {
+  min-width: 100% !important;
+  margin-bottom: 2rem !important;
+}
+
+/* <ThemeProvider theme={primaryTheme}>
+<Box className="dealco-overview cols">
+  <Box className="dealco-ov-left rows">
+    <Box className="dealco-status-box">
+      <TextField label="Status" className="dealco-status" />
+      <Button>New Note</Button>
+      <Button>Add to Weekly Meeting</Button>
+      <Button>Initial Vote Results</Button>
+      <Button>Final Vote Results</Button>
+      <Button>Add to Portfolio</Button>
+    </Box>
+  </Box>
+  <Notes notes={props.notes} />
+</Box>
+</ThemeProvider>
+);
+} */

@@ -13,6 +13,7 @@ import {
   FormControlLabel,
   Checkbox,
   Link,
+  FormControl,
   Button,
 } from "@material-ui/core";
 import { primaryTheme } from "./../../utils/constants";
@@ -23,21 +24,19 @@ import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 function Home(props) {
   const AgendaCard = () => {
     return (
-      <Card raised className="home-agenda-card">
+      <Card className="home-agenda-card">
         <CardContent className="home-agenda-content">
           <Typography className="home-card-title" variant="h6">
-            📋 Firm Agenda
+            📋 Agenda
           </Typography>
           <FormGroup column>
             {props.agenda.map((i, idx) => {
               return (
-                <div>
-                  <FormControlLabel
-                    className="home-agenda-item"
-                    control={<Checkbox name={"checked-" + idx} />}
-                    label={i}
-                  />
-                </div>
+                <FormControlLabel
+                  className="home-agenda-item"
+                  control={<Checkbox name={"checked-" + idx} />}
+                  label={i}
+                />
               );
             })}
           </FormGroup>
@@ -47,7 +46,7 @@ function Home(props) {
   };
   const DealsCard = () => {
     return (
-      <Card raised className="home-deals-card">
+      <Card className="home-deals-card">
         <CardContent classNaome="home-deals-card-content">
           <Typography className="home-card-title" variant="h6">
             🤝 Deals
@@ -69,7 +68,7 @@ function Home(props) {
   };
   const PortfolioCard = () => {
     return (
-      <Card raised className="home-portfolio-card home-left-bottom ">
+      <Card className="home-portfolio-card home-left-bottom ">
         <CardContent className="home-portfolio-card-content">
           <Typography className="home-card-title" variant="h6">
             📁 Portfolio
@@ -95,7 +94,7 @@ function Home(props) {
   };
   const TodayCard = () => {
     return (
-      <Card raised className="home-today-card">
+      <Card className="home-today-card">
         <CardContent className="home-today-card-content">
           <Typography variant="h6" className="home-card-title">
             📣 Today
@@ -149,14 +148,14 @@ function Home(props) {
   const CalendarTable = () => {};
   const WeekCard = () => {
     return (
-      <Card raised className="home-week-card">
+      <Card className="home-week-card">
         <CardContent className="home-week-card-content">
           <Typography variant="h6" className="home-card-title">
             📅 Later this week
           </Typography>
           {props.week.map((i) => {
             return (
-              <Card raised className="meeting-card" variant="outlined">
+              <Card className="meeting-card" variant="outlined">
                 <CardContent className="meeting-card-content cols">
                   <Typography variant="body" className="meeting meeting-time">
                     {i.time}
@@ -186,9 +185,6 @@ function Home(props) {
   return (
     <ThemeProvider theme={primaryTheme}>
       <Box className="home-box rows">
-        <Typography className="home-title" variant="h4">
-          Hello {props.name}
-        </Typography>
         <div className={classes.root}>
           <Grid container spacing={3}>
             <Grid item xs={3}>

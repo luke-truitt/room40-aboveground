@@ -1,4 +1,4 @@
-import companyLogo from "./../resources/images/guesthouse-logo.png";
+import companyLogo from "./../resources/images/guesthouse-logo-dark.png";
 const assessmentData = {
   active: false,
   number: 0,
@@ -169,7 +169,54 @@ export const portfolioCompanyData = {
 };
 
 export const dealCompanyData = {
-  notes: notes,
+  overviewData: {
+    notes: notes,
+    status: "Initial Evaluation",
+  },
+  eval: {
+    columns: [
+      { field: "criteria", headerName: "Criteria", width: 150 },
+      { field: "score", headerName: "Score", width: 150 },
+      { field: "headline", headerName: "Headline", width: 600 },
+    ],
+    rows: [
+      {
+        id: 1,
+        criteria: "Team",
+        score: 10,
+        headline:
+          "Home staging is a $3-5B market in the US that is primed for tech and innovation",
+      },
+      {
+        id: 2,
+        criteria: "Market",
+        score: 10,
+        headline:
+          "Home staging is a $3-5B market in the US that is primed for tech and innovation",
+      },
+      {
+        id: 3,
+        criteria: "Product",
+        score: 10,
+        headline:
+          "Home staging is a $3-5B market in the US that is primed for tech and innovation",
+      },
+      {
+        id: 4,
+        criteria: "Model",
+        score: 10,
+        headline:
+          "Home staging is a $3-5B market in the US that is primed for tech and innovation",
+      },
+      {
+        id: 5,
+        criteria: "Deal",
+        score: 10,
+        headline:
+          "Home staging is a $3-5B market in the US that is primed for tech and innovation",
+      },
+    ],
+  },
   overview: portfolioCompanyOverview,
   assessmentData: assessmentData,
   financingData: financingData,

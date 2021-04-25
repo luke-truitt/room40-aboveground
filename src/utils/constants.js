@@ -91,7 +91,7 @@ export const primaryTheme = createMuiTheme({
     },
   },
   palette: {
-    type: "dark",
+    // type: "dark",
 
     primary: {
       main: "#141414",
