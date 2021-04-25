@@ -44,6 +44,7 @@ import {
   dealCompanyData,
 } from "./utils/Data";
 import WeeklyMeeting from "./components/weeklymeeting/WeeklyMeeting";
+import * as api from "./utils/api";
 
 function App() {
   const drawerWidth = 240;
@@ -59,6 +60,7 @@ function App() {
     deals: null,
     dealCompany: null,
   });
+  api.GetActivities();
 
   const handleDrawerOpen = () => {
     setOpen(true);
