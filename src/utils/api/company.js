@@ -5,9 +5,9 @@ const {
 
 const axios = require("axios");
 
-export function GetCompanies(ids="") {
+export function GetCompanies(ids=null, investor_id=null) {
 return axios
-    .get(REACT_APP_API_BASE_URL + REACT_APP_COMPANY_URL, {params: {ids: ids}})
+    .get(REACT_APP_API_BASE_URL + REACT_APP_COMPANY_URL, {params: {ids: ids, investor_id: investor_id}})
 }
 
 export function GetCompany(company_id) {

@@ -13,6 +13,7 @@ import {
   FormControlLabel,
   Checkbox,
   Link,
+  FormControl,
   Button,
 } from "@material-ui/core";
 import { primaryTheme } from "./../../utils/constants";
@@ -21,31 +22,17 @@ import "./Home.css";
 import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import * as api from './../../utils/api/api';
 
-const {
-  REACT_APP_API_BASE_URL,
-  REACT_APP_USER_URL,
-  REACT_APP_COMPANY_URL,
-  REACT_APP_DEAL_URL,
-  REACT_APP_DEAL_INVESTOR_URL,
-  REACT_APP_ACTIVITIES_URL,
-  REACT_APP_ASSESSMENTS_URL,
-  REACT_APP_EVENTS_URL,
-  REACT_APP_EVENT_PARTICIPANTS_URL,
-  REACT_APP_HIGHLIGHTS_URL,
-  REACT_APP_NOTES_URL,
-  REACT_APP_USER_COMPANY_URL,
-  REACT_APP_VOTE_URL,
-} = process.env;
-
 const axios = require("axios");
-
-
 
 function Home(props) {
   const [loading, setLoading] = useState(true);
   const [deals, setDeals] = useState([]);
+  const [activities, setActivities] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [weekEvents, setWeekEvents] = useState([]);
+  const [portCos, setPortCos] = useState([]);
 
-  useEffect(() => {
+  const LoadDeals = () => {
     api.deal.GetDeals()
     .then(function (response) {
       let big_deals = response.data.data;
@@ -68,25 +55,60 @@ function Home(props) {
       .catch(function (error) {
       console.log(error);
       });
+  }
+
+  const LoadAgenda = () => {
+    api.activity.GetActivities()
+    .then(function (response) {
+        setActivities(response.data.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  const LoadEvents = () => {
+    api.evt.GetEvents(null, true)
+    .then(function (response) {
+        setEvents(response.data.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  const LoadPortCos = () => {
+    api.company.GetCompanies(null, "2")
+    .then(function (response) {
+      setPortCos(response.data.data);
+      })
+      .catch(function (error) {
+      console.log(error);
+      });
+  }
+
+  useEffect(() => {
+    LoadDeals();
+    LoadAgenda();
+    LoadEvents();
+    LoadPortCos();
 }, []);
 
   const AgendaCard = () => {
     return (
-      <Card raised className="home-agenda-card">
+      <Card className="home-agenda-card">
         <CardContent className="home-agenda-content">
           <Typography className="home-card-title" variant="h6">
-            📋 Firm Agenda
+            📋 Agenda
           </Typography>
           <FormGroup column>
             {props.agenda.map((i, idx) => {
               return (
-                <div>
-                  <FormControlLabel
-                    className="home-agenda-item"
-                    control={<Checkbox name={"checked-" + idx} />}
-                    label={i}
-                  />
-                </div>
+                <FormControlLabel
+                  className="home-agenda-item"
+                  control={<Checkbox name={"checked-" + idx} />}
+                  label={i}
+                />
               );
             })}
           </FormGroup>
@@ -96,7 +118,7 @@ function Home(props) {
   };
   const DealsCard = () => {
     return (
-      <Card raised className="home-deals-card">
+      <Card className="home-deals-card">
         <CardContent classNaome="home-deals-card-content">
           <Typography className="home-card-title" variant="h6">
             🤝 Deals
@@ -107,7 +129,8 @@ function Home(props) {
             hideFooterPagination
             density="compact"
             className="data-grid"
-            rows={deals}
+            // rows={deals}
+            rows={props.deals.rows}
             columns={props.deals.columns}
             autoPageSize
             onCellClick={(params) => props.openDealCompany(params.row.id)}
@@ -118,7 +141,7 @@ function Home(props) {
   };
   const PortfolioCard = () => {
     return (
-      <Card raised className="home-portfolio-card home-left-bottom ">
+      <Card className="home-portfolio-card home-left-bottom ">
         <CardContent className="home-portfolio-card-content">
           <Typography className="home-card-title" variant="h6">
             📁 Portfolio
@@ -130,9 +153,10 @@ function Home(props) {
               hideFooterPagination
               autoHeight
               //TODO
-              onCellClick={() => props.openPortfolioCompany(0)}
+              onCellClick={(params) => props.openPortfolioCompany(params.row.id)}
               density="compact"
               className="data-grid"
+              // rows={portCos}
               rows={props.portfolio.rows}
               columns={props.portfolio.columns}
               autoPageSize
@@ -144,7 +168,7 @@ function Home(props) {
   };
   const TodayCard = () => {
     return (
-      <Card raised className="home-today-card">
+      <Card className="home-today-card">
         <CardContent className="home-today-card-content">
           <Typography variant="h6" className="home-card-title">
             📣 Today
@@ -198,14 +222,14 @@ function Home(props) {
   const CalendarTable = () => {};
   const WeekCard = () => {
     return (
-      <Card raised className="home-week-card">
+      <Card className="home-week-card">
         <CardContent className="home-week-card-content">
           <Typography variant="h6" className="home-card-title">
             📅 Later this week
           </Typography>
           {props.week.map((i) => {
             return (
-              <Card raised className="meeting-card" variant="outlined">
+              <Card className="meeting-card" variant="outlined">
                 <CardContent className="meeting-card-content cols">
                   <Typography variant="body" className="meeting meeting-time">
                     {i.time}
@@ -235,9 +259,6 @@ function Home(props) {
   return (
     <ThemeProvider theme={primaryTheme}>
       <Box className="home-box rows">
-        <Typography className="home-title" variant="h4">
-          Hello {props.name}
-        </Typography>
         <div className={classes.root}>
           <Grid container spacing={3}>
             <Grid item xs={3}>

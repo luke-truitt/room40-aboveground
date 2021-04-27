@@ -42,6 +42,7 @@ import {
   portfolioCompanyData,
   portfolioData,
   dealCompanyData,
+  weeklyMeetingData,
 } from "./utils/Data";
 import WeeklyMeeting from "./components/weeklymeeting/WeeklyMeeting";
 import * as api from "./utils/api/api";
@@ -52,10 +53,11 @@ function App() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [tab, setTab] = useState("Home");
-  const [dealId, setDealId] = useState("")
+  const [dealId, setDealId] = useState("");
+  const [companyId, setCompanyId] = useState("");
   const [data, setData] = useState({
     home: homeData,
-    weeklyMeeting: null,
+    weeklyMeeting: weeklyMeetingData,
     portfolio: portfolioData,
     portfolioCompany: null,
     deals: null,
@@ -71,11 +73,11 @@ function App() {
   };
 
   const openPortfolioCompany = (id) => {
+    setCompanyId(id);
     const newData = data;
     //TODO switch to be dynamic
     newData.portfolioCompany = portfolioCompanyData;
     setData(newData);
-    console.log(data.portfolioCompany);
     setTab("PortfolioCompany");
   };
 
@@ -103,7 +105,7 @@ function App() {
         openDealCompany={openDealCompany}
       />
     ),
-    "Weekly Meeting": <WeeklyMeeting />,
+    "Weekly Meeting": <WeeklyMeeting {...data.weeklyMeeting} />,
     Portfolio: (
       <Portfolio
         {...data.portfolio}
@@ -111,10 +113,9 @@ function App() {
       />
     ),
     Deals: <Deals />,
-    PortfolioCompany: <PortfolioCompany {...data.portfolioCompany} />,
-    DealCompany: <DealCompany {...{"dealId": dealId}} />,
+    PortfolioCompany: <PortfolioCompany {...{...data.portfolioCompany, "companyId": companyId}} />,
+    DealCompany: <DealCompany {...{...data.dealCompany, "dealId": dealId}} />,
   };
-  console.log("hi again", data);
 
   return (
     <ThemeProvider theme={primaryTheme}>

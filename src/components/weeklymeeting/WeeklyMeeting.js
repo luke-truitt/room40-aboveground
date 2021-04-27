@@ -19,87 +19,175 @@ import { primaryTheme } from "../../utils/constants";
 import "./../../utils/global.css";
 import "./WeeklyMeeting.css";
 import { DataGrid } from "@material-ui/data-grid";
-
+import { useState } from "react";
 import TabbedBox from "../TabbedBox";
+import ReactMarkdown, { propTypes } from "react-markdown";
 
-const notesColumns = [
-  { field: "company", headerName: "Company", width: 100 },
-  { field: "todo", headerName: "TODO", width: 300 },
-];
-const initialVoteColumns = [
-  { field: "deal", headerName: "Deal", width: 400 },
-  { field: "vote", headerName: "", width: 100 },
-];
-const finalVoteColumns = [
-  { field: "deal", headerName: "Deal", width: 400 },
-  { field: "vote", headerName: "", width: 100 },
-];
-function WeeklyMeeting(props) {
-  props = {
-    notes: {
-      todos: ["Eat cake", "Cry a lot", "Celebrate"],
-      portfolio: [
-        { id: 1, company: "Braid", todo: "Many many things" },
-        { id: 2, company: "Braid", todo: "Many many things" },
-        { id: 3, company: "Braid", todo: "Many many things" },
-        { id: 4, company: "Braid", todo: "Many many things" },
-      ],
-    },
-    initialVotes: [
-      { id: 1, deal: "Company", vote: "" },
-      { id: 2, deal: "Company", vote: "" },
-      { id: 3, deal: "Company", vote: "" },
-      { id: 4, deal: "Company", vote: "" },
-    ],
-    finalVotes: [
-      { id: 1, deal: "Company", vote: "" },
-      { id: 2, deal: "Company", vote: "" },
-      { id: 3, deal: "Company", vote: "" },
-      { id: 4, deal: "Company", vote: "" },
-    ],
+function Notes(props) {
+  const [notepadActive, setNotepadActive] = useState(false);
+  const [current, setCurrent] = useState("Notes");
+  const [saved, setSaved] = useState("Notes");
+
+  const onCancelButton = (id) => {
+    //TODO change note values
+    setNotepadActive(false);
+    setCurrent(saved);
   };
-  const notes = props.notes;
-  const Notes = () => {
+  const onEditButton = (id) => {
+    setNotepadActive(true);
+  };
+
+  const onSaveButton = () => {
+    setNotepadActive(false);
+    setSaved(current);
+    // TODO send back to database
+  };
+
+  const handleChange = (event) => {
+    setCurrent(event.target.value);
+  };
+  const EditPanel = () => {
     return (
-      <Box className="notes-box rows">
-        <Box className="notes-box-top cols">
-          <Box className="notes-todos rows">
-            <Typography className="notes-sub-title" variant="body">
+      <Box className="note-edit-panel cols">
+        {notepadActive ? (
+          <div className="note-edit-panel-active rows">
+            <Divider />
+            <Box className="note-edit-panel-active-buttons cols">
+              <Button
+                variant="outlined"
+                className="cancel-button"
+                onClick={() => onCancelButton()}
+              >
+                Cancel
+              </Button>
+              <Button
+                className="save-button"
+                variant="filled"
+                onClick={() => onSaveButton()}
+                color="primary"
+              >
+                Save
+              </Button>
+            </Box>
+          </div>
+        ) : (
+          <Button className="edit-button" onClick={() => onEditButton()}>
+            Edit{" "}
+          </Button>
+        )}
+      </Box>
+    );
+  };
+  console.log(props);
+  return (
+    <Box className="notes-box rows">
+      <Box className="notes-box-top cols">
+        <Card className="notes-todos">
+          <CardContent className=" rows">
+            <Typography variant="h6" className="notes-subtitle">
               TODOs
             </Typography>
             <FormControl>
               <FormGroup>
-                {notes.todos.map((todo) => {
+                {props.todos.map((todo) => {
                   return (
-                    <FormControlLabel control={<Checkbox />} label={todo} />
+                    <FormControlLabel
+                      className="week-agenda-item"
+                      control={<Checkbox />}
+                      label={todo}
+                    />
                   );
                 })}
               </FormGroup>
             </FormControl>
-          </Box>
-          <Divider className="vr" orientation="vertical" flexItem />
-          <DataGrid
-            autoHeight
-            autoPageSize
-            hideFooterRowCount
-            hideFooterPagination
-            density="compact"
-            className="notes-data-grid"
-            rows={notes.portfolio}
-            columns={notesColumns}
-          />
-        </Box>
-        <Divider className="hr" />
-        <Box className="notes-box-bottom">
-          <TextField
-            multiline
-            variant="filled"
-            className="meeting-notes-text-field"
-          ></TextField>
-        </Box>
+          </CardContent>{" "}
+        </Card>
+        <Card className="notes-dg-card">
+          <CardContent className="notes-dg-card-content">
+            <Typography variant="h6" className="notes-subtitle">
+              Portfolio
+            </Typography>
+            <DataGrid
+              autoHeight
+              autoPageSize
+              hideFooterRowCount
+              hideFooterPagination
+              density="compact"
+              className="notes-data-grid"
+              rows={props.portfolio.rows}
+              columns={props.portfolio.columns}
+            />
+          </CardContent>
+        </Card>
       </Box>
-    );
-  };
+      <Card className="notes-box-bottom">
+        <CardContent className="notepad-box rows">
+          <Typography variant="h6" className="notes-subtitle">
+            Notes
+          </Typography>
+          {notepadActive ? (
+            <TextField
+              className="notepad-text-field"
+              variant="outlined"
+              multiline
+              disabled={!notepadActive}
+              value={current}
+              onChange={handleChange}
+            />
+          ) : (
+            <ReactMarkdown className="notepad-text-field">
+              {saved}
+            </ReactMarkdown>
+          )}
+        </CardContent>
+      </Card>
+
+      <EditPanel />
+    </Box>
+  );
+}
+
+function WeeklyMeeting(props) {
+  const initialVotesCols = [
+    { field: "deal", headerName: "Deal", width: 400 },
+    {
+      field: "vote",
+      headerName: " ",
+      width: 150,
+      renderCell: (params) => (
+        <Button
+          variant="contained"
+          disableElevation
+          color="secondary"
+          className="vote-button"
+        >
+          {" "}
+          Vote
+        </Button>
+      ),
+    },
+    { field: "status", headerName: "Status", width: 200 },
+  ];
+  const finalVotesCols = [
+    { field: "deal", headerName: "Deal", width: 400 },
+    {
+      field: "vote",
+      headerName: " ",
+      width: 150,
+      renderCell: (params) => (
+        <Button
+          variant="contained"
+          disableElevation
+          color="secondary"
+          className="vote-button"
+        >
+          Vote
+        </Button>
+      ),
+    },
+    { field: "status", headerName: "Status", width: 200 },
+  ];
+
   const InitialVotes = () => {
     return (
       <Box className="initial-votes">
@@ -108,10 +196,10 @@ function WeeklyMeeting(props) {
           autoPageSize
           hideFooterRowCount
           hideFooterPagination
-          density="compact"
+          density="comfortable"
           className="notes-data-grid"
-          rows={props.initialVotes}
-          columns={initialVoteColumns}
+          rows={props.initialVotes.rows}
+          columns={initialVotesCols}
         />
       </Box>
     );
@@ -124,16 +212,17 @@ function WeeklyMeeting(props) {
           autoPageSize
           hideFooterRowCount
           hideFooterPagination
-          density="compact"
+          density="comfortable"
           className="notes-data-grid"
-          rows={props.finalVotes}
-          columns={finalVoteColumns}
+          rows={props.finalVotes.rows}
+          columns={finalVotesCols}
         />
       </Box>
     );
   };
+  console.log(props);
   const tabs = [
-    { title: "Notes", component: <Notes /> },
+    { title: "Notes", component: <Notes {...props.notes} /> },
     { title: "Initial Votes", component: <InitialVotes /> },
     { title: "Final Votes", component: <FinalVotes /> },
   ];

@@ -14,10 +14,11 @@ import { primaryTheme } from "../../utils/constants";
 import "./DealCompany.css";
 import "./../../utils/global.css";
 import TabbedBox from "../TabbedBox";
-import Assessment from "./Assessment";
-import Financing from "./Financing";
 import AddIcon from "@material-ui/icons/Add";
-import companyLogo from "./../../resources/images/guesthouse-logo.png";
+
+import companyLogo from "./../../resources/images/guesthouse-logo-dark.png";
+import DealCompanyOverview from "./DealCompanyOverview";
+import { DataGrid } from "@material-ui/data-grid";
 import Notes from "../Notes/Notes";
 import * as api from './../../utils/api/api';
 
@@ -45,11 +46,29 @@ function DealCompany(props) {
       console.log(error);
       });
 }, [props.dealId]);
+
+  const EvalSummary = () => {
+    return (
+      <Box className="evalsum">
+        <DataGrid
+          autoHeight
+          hideFooterRowCount
+          hideFooterPagination
+          density="comfortable"
+          className="data-grid"
+          rows={props.eval.rows}
+          columns={props.eval.columns}
+          autoPageSize
+        />
+      </Box>
+    );
+  };
+
   const Overview = () => {
-    return <div />;
+    return <DealCompanyOverview {...props.overviewData} />;
   };
   const Evaluation = () => {
-    return <div />;
+    return <EvalSummary />;
   };
   const Files = () => {
     return <div />;
@@ -57,23 +76,23 @@ function DealCompany(props) {
 
   const tabs = [
     { title: "Overview", component: <Overview /> },
-    // { title: "Evaluation", component: <Evaluation/> },
+    { title: "Evaluation", component: <Evaluation /> },
     // { title: "Files", component: <Files/> },
   ];
   return (
     <ThemeProvider theme={primaryTheme}>
-      <Box className="portco-box rows">
+      <Box className="dealco-box rows">
         <GlobalBreadcrumbs />
-        <Box className="portco-overview-top cols">
+        <Box className="dealco-overview-top cols">
           {/*TODO Fix to be dynamic*/}
           <Box className="portco-logo-box">
             {/* <img className="portco-logo" src={props.overview.logo} /> */}
             <span className="portco-overview-label">{company.name}</span>
           </Box>
-          <Box className="portco-overview-buttons rows">
+          <Box className="dealco-overview-buttons rows">
             <Button
               variant="contained"
-              className="portco-overview-deck-button"
+              className="dealco-overview-deck-button"
               disableElevation
             >
               View Deck
@@ -81,7 +100,7 @@ function DealCompany(props) {
             </Button>
             <Button
               variant="outlined"
-              className="portco-overview-note-button"
+              className="dealco-overview-note-button"
               disableElevation
             >
               New Note
@@ -89,7 +108,7 @@ function DealCompany(props) {
             </Button>
           </Box>
         </Box>
-        <Box className="portco-overview-bottom">
+        <Box className="dealco-overview-bottom">
           <Typography variant="body">
             <span className="portco-overview-label">Deal Team: </span>
             {/* {props.overview.dealTeam} */}

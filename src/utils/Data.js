@@ -1,4 +1,4 @@
-import companyLogo from "./../resources/images/guesthouse-logo.png";
+import companyLogo from "./../resources/images/guesthouse-logo-dark.png";
 const assessmentData = {
   active: false,
   number: 0,
@@ -12,21 +12,23 @@ const assessmentData = {
   ],
   history: {
     columns: [
-      { field: "assessment", headerName: "Assessment", width: 100 },
+      { field: "assessment", headerName: "Assessment", width: 150 },
       { field: "date", headerName: "Date", width: 100 },
       { field: "status", headerName: "Cost", width: 200 },
-      { field: "commentary", headerName: "Commentary", width: 200 },
+      { field: "commentary", headerName: "Commentary", width: 500 },
     ],
     rows: [
       {
         id: 1,
         assessment: 0,
+        date: "1/1/2021",
         status: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         commentary:
           "Integer sit amet libero dictum, porttitor eros vel, cursus nulla.",
       },
       {
         id: 2,
+        date: "1/1/2021",
         assessment: 0,
         status: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         commentary:
@@ -34,6 +36,7 @@ const assessmentData = {
       },
       {
         id: 3,
+        date: "1/1/2021",
         assessment: 0,
         status: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         commentary:
@@ -41,6 +44,7 @@ const assessmentData = {
       },
       {
         id: 4,
+        date: "1/1/2021",
         assessment: 0,
         status: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         commentary:
@@ -169,7 +173,54 @@ export const portfolioCompanyData = {
 };
 
 export const dealCompanyData = {
-  notes: notes,
+  overviewData: {
+    notes: notes,
+    status: "Initial Evaluation",
+  },
+  eval: {
+    columns: [
+      { field: "criteria", headerName: "Criteria", width: 150 },
+      { field: "score", headerName: "Score", width: 150 },
+      { field: "headline", headerName: "Headline", width: 600 },
+    ],
+    rows: [
+      {
+        id: 1,
+        criteria: "Team",
+        score: 10,
+        headline:
+          "Home staging is a $3-5B market in the US that is primed for tech and innovation",
+      },
+      {
+        id: 2,
+        criteria: "Market",
+        score: 10,
+        headline:
+          "Home staging is a $3-5B market in the US that is primed for tech and innovation",
+      },
+      {
+        id: 3,
+        criteria: "Product",
+        score: 10,
+        headline:
+          "Home staging is a $3-5B market in the US that is primed for tech and innovation",
+      },
+      {
+        id: 4,
+        criteria: "Model",
+        score: 10,
+        headline:
+          "Home staging is a $3-5B market in the US that is primed for tech and innovation",
+      },
+      {
+        id: 5,
+        criteria: "Deal",
+        score: 10,
+        headline:
+          "Home staging is a $3-5B market in the US that is primed for tech and innovation",
+      },
+    ],
+  },
   overview: portfolioCompanyOverview,
   assessmentData: assessmentData,
   financingData: financingData,
@@ -222,47 +273,47 @@ export const homeData = {
     rows: [
       {
         id: 1,
-        deals: "OpenSea",
+        companyName: "OpenSea",
       },
       {
         id: 2,
-        deals: "Coinbase",
+        companyName: "Coinbase",
       },
       {
         id: 3,
-        deals: "WeWork",
+        companyName: "WeWork",
       },
       {
         id: 4,
-        deals: "SoftBank",
+        companyName: "SoftBank",
       },
     ],
   },
   portfolio: {
     columns: [
-      { field: "company", headerName: "Company", width: 200 },
-      { field: "todo", headerName: "TODO", width: 400 },
+      { field: "name", headerName: "Company", width: 200 },
+      { field: "industry", headerName: "TODO", width: 400 },
     ],
     rows: [
       {
         id: 1,
-        company: "Standard",
-        todo: "Help with Series F raise",
+        name: "Standard",
+        industry: "Help with Series F raise",
       },
       {
         id: 2,
-        company: "Eighth Fund",
-        todo: "Hire one million people",
+        name: "Eighth Fund",
+        industry: "Hire one million people",
       },
       {
         id: 3,
-        company: "Contrary",
-        todo: "Ask for investment advice",
+        name: "Contrary",
+        industry: "Ask for investment advice",
       },
       {
         id: 4,
-        company: "Dorm Room Fund",
-        todo: "Recruit associates",
+        name: "Dorm Room Fund",
+        industry: "Recruit associates",
       },
     ],
   },
@@ -278,4 +329,38 @@ export const portfolioData = {
     lacinia sit amet ex. Nam ultricies arcu eros, quis cursus libero sollicitudin non. Pellentesque ac \
     est in tortor convallis congue non et risus.",
   lastUpdated: new Date(),
+};
+
+export const weeklyMeetingData = {
+  notes: {
+    portfolio: {
+      rows: [
+        { id: 1, company: "Braid", todo: "Many many things" },
+        { id: 2, company: "Braid", todo: "Many many things" },
+        { id: 3, company: "Braid", todo: "Many many things" },
+        { id: 4, company: "Braid", todo: "Many many things" },
+      ],
+      columns: [
+        { field: "company", headerName: "Company", width: 200 },
+        { field: "todo", headerName: "TODO", width: 400 },
+      ],
+    },
+    todos: ["Eat cake", "Cry a lot", "Celebrate"],
+  },
+  initialVotes: {
+    rows: [
+      { id: 1, deal: "Company", vote: "", status: "Not Started" },
+      { id: 2, deal: "Company", vote: "", status: "Not Started" },
+      { id: 3, deal: "Company", vote: "", status: "Not Started" },
+      { id: 4, deal: "Company", vote: "", status: "Not Started" },
+    ],
+  },
+  finalVotes: {
+    rows: [
+      { id: 1, deal: "Company", vote: "", status: "Not Started" },
+      { id: 2, deal: "Company", vote: "", status: "Not Started" },
+      { id: 3, deal: "Company", vote: "", status: "Not Started" },
+      { id: 4, deal: "Company", vote: "", status: "Not Started" },
+    ],
+  },
 };

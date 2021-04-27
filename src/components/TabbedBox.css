@@ -5,7 +5,6 @@
 .tabbed-box-card {
   background-color: transparent !important;
   height: 80vh;
-  overflow: scroll !important;
 }
 .tab-panel {
   height: 100% !important;

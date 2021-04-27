@@ -15,6 +15,7 @@ import TabbedBox from "../TabbedBox";
 import PortfolioOverview from "./PortfolioOverview";
 
 function Portfolio(props) {
+
   console.log("HEY", props);
   const HeaderCardContent = (
     <Box className="port-header-card-content-box rows">

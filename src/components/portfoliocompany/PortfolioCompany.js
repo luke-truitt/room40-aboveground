@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState } from "react";
 import {
   Typography,
   ThemeProvider,
@@ -17,10 +17,24 @@ import TabbedBox from "../TabbedBox";
 import Assessment from "./Assessment";
 import Financing from "./Financing";
 import AddIcon from "@material-ui/icons/Add";
-import companyLogo from "./../../resources/images/guesthouse-logo.png";
+import companyLogo from "./../../resources/images/guesthouse-logo-dark.png";
 import Notes from "../Notes/Notes2";
+import * as api from './../../utils/api/api';
 
 function PortfolioCompany(props) {
+  const [company, setCompany] = useState({});
+
+  useEffect(() => {
+    api.company.GetCompany(props.companyId)
+    .then(function (response) {
+      setCompany(response.data);
+      }
+    )
+      .catch(function (error) {
+      console.log(error);
+      });
+}, [props.companyId]);
+
   console.log(props.notes);
   const memoComponent = <Notes notes={props.notes} />;
   const AssessmentComponent = <Assessment {...props.assessmentData} />;
@@ -39,7 +53,7 @@ function PortfolioCompany(props) {
         <Box className="portco-overview-top cols">
           {/*TODO Fix to be dynamic*/}
           <Box className="portco-logo-box">
-            <img className="portco-logo" src={props.overview.logo} />
+            {company.name}
           </Box>
           <Box className="portco-overview-buttons rows">
             <Button

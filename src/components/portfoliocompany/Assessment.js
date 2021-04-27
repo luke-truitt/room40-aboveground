@@ -17,34 +17,39 @@ function Assessment(props) {
     <ThemeProvider theme={primaryTheme}>
       <Box className="assessment-box rows">
         <Box className="current-box cols">
-          <Box className="status">
-            <Typography className="assessment-score" variant="h3">
-              3
-            </Typography>
-            <Typography variant="body">{props.status}</Typography>
-          </Box>
-          <Divider className="vr" flexItem orientation="vertical" />
-          <Box className="commentary">
-            <Typography variant="h5">Recent Commentary</Typography>
-            <Typography variant="body">{props.commentary}</Typography>
-          </Box>
-          <Divider className="vr" flexItem orientation="vertical" />
-          <Box className="ass-todos">
-            <Typography variant="h5">RPVC TODOs</Typography>
-            {props.todo.map((i) => {
-              return (
-                <Typography variant="body">
-                  {i}
-                  <br />
-                </Typography>
-              );
-            })}
-          </Box>
+          <Card className="status">
+            <CardContent>
+              <Typography className="assessment-score" variant="h3">
+                3
+              </Typography>
+              <Typography variant="body">{props.status}</Typography>
+            </CardContent>
+          </Card>
+          <Card className="commentary">
+            <CardContent>
+              <Typography variant="h6">Recent Commentary</Typography>
+              <Typography variant="body">{props.commentary}</Typography>
+            </CardContent>
+          </Card>
+          <Card className="ass-todos">
+            <CardContent>
+              <Typography variant="h6">RPVC TODOs</Typography>
+              {props.todo.map((i) => {
+                return (
+                  <Typography variant="body">
+                    {i}
+                    <br />
+                  </Typography>
+                );
+              })}
+            </CardContent>
+          </Card>
         </Box>
-        <Divider className="hr" />
-        <Box className="history-box rows">
-          <Box className="history-content cols">
+        <Card className="history-box rows">
+          <CardContent className="history-content">
+            <Typography variant="h6">History</Typography>
             <DataGrid
+              className="history-grid"
               autoHeight
               hideFooterRowCount
               hideFooterPagination
@@ -52,8 +57,8 @@ function Assessment(props) {
               columns={props.history.columns}
               autoPageSize
             />
-          </Box>
-        </Box>
+          </CardContent>
+        </Card>
       </Box>
     </ThemeProvider>
   );
