@@ -18,57 +18,87 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { primaryTheme } from "../../utils/constants";
 import ReactMarkdown from "react-markdown";
 import "./Notes.css";
-
+/** Notes format
+ * notes = [
+  {
+    id: 1,
+    title: "Memo",
+    note:
+      "Key Stats \
+    * 1M of 5M homes used a stager (20% penetration)\
+    * 10K pr"}\
+ */
 function Notes(props) {
-  const notes = props.notes;
-  const [expanded, setExpanded] = useState(notes[0].id);
+  const [saved, setSaved] = useState(props.notes);
+  const [current, setCurrent] = useState([...props.notes]);
+  const [expanded, setExpanded] = useState(saved[0].id);
   const [active, setActive] = useState(false);
 
-  const onNoteChange = (e) => {
-    // setNoteValue(e.target.value);
+  const onTitleChange = (idx) => (e) => {
+    let prev = [...current];
+    prev[idx].title = e.target.value;
+    setCurrent(prev);
   };
-  const onTitleChange = (e) => {
-    // setTitleValue(e.target.value);
+  const onNoteChange = (idx) => (e) => {
+    let prev = [...current];
+    console.log("1", saved);
+    let note = { ...prev[idx] };
+    console.log("2", saved);
+    note.note = e.target.value;
+    console.log("3", saved);
+    prev[idx] = note;
+    console.log(prev);
+    console.log("4", saved);
+    setCurrent(prev);
   };
 
-  const onCancelButton = (id) => {
-    //TODO change note values
+  const onSave = (idx) => {
+    let prev = [...saved];
+    prev[idx].title = current[idx].title;
+    prev[idx].note = current[idx].note;
+    setSaved(prev);
     setActive(false);
-  };
-  const onEditButton = (id) => {
-    setActive(id);
-    console.log(active);
+    // TODO: Send to DB
   };
 
-  const onSaveButton = () => {
+  const onCancel = () => {
+    console.log("onCancel");
+    console.log("current 1:", current);
+    console.log("saved:", saved);
+    var prev = [...saved];
+    setCurrent(prev);
     setActive(false);
-    // TODO send back to database
+    console.log("current 2:", current);
   };
 
-  const onExpand = (id) => {
+  const onEdit = (idx) => {
+    setActive(saved[idx].id);
+  };
+
+  const onExpand = (idx) => {
     if (active === false) {
-      setExpanded(id);
+      setExpanded(saved[idx].id);
     }
   };
 
   const EditPanel = (props) => {
     return (
       <Box className="note-edit-panel cols">
-        {active === props.id ? (
+        {active === saved[props.idx].id ? (
           <div className="note-edit-panel-active rows">
             <Divider />
             <Box className="note-edit-panel-active-buttons cols">
               <Button
                 className="cancel-button"
                 size="medium"
-                onClick={() => onCancelButton(props.id)}
+                onClick={() => onCancel()}
               >
                 Cancel
               </Button>
               <Button
                 className="save-button"
                 size="medium"
-                onClick={() => onSaveButton(props.id)}
+                onClick={() => onSave(props.idx)}
                 color="primary"
               >
                 Save
@@ -79,10 +109,10 @@ function Notes(props) {
           <Button
             className="edit-button"
             size="medium"
-            onClick={() => onEditButton(props.id)}
+            onClick={() => onEdit(props.idx)}
             color="primary"
           >
-            Edit{" "}
+            Edit
           </Button>
         )}
       </Box>
@@ -92,10 +122,10 @@ function Notes(props) {
   return (
     <ThemeProvider theme={primaryTheme}>
       <div>
-        {notes.map((note) => {
+        {saved.map((note, idx) => {
           return (
             <Accordion
-              onChange={() => onExpand(note.id)}
+              onChange={() => onExpand(idx)}
               expanded={expanded === note.id}
             >
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -105,6 +135,8 @@ function Notes(props) {
                     disabled={!(active === note.id)}
                     defaultValue={note.title}
                     id="note-title"
+                    onChange={onTitleChange(idx)}
+                    value={current[idx].title}
                   />
                 </Typography>
               </AccordionSummary>
@@ -116,7 +148,8 @@ function Notes(props) {
                       InputProps={{ disableUnderline: true }}
                       multiline
                       disabled={!(active === note.id)}
-                      defaultValue={note.note}
+                      value={current[idx].note}
+                      onChange={onNoteChange(idx)}
                     />
                   ) : (
                     <ReactMarkdown className="note-text-field">
@@ -124,7 +157,7 @@ function Notes(props) {
                     </ReactMarkdown>
                   )}
                   <AccordionActions>
-                    <EditPanel id={note.id} />
+                    <EditPanel idx={idx} />
                   </AccordionActions>
                 </Box>
               </AccordionDetails>
