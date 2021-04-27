@@ -52,6 +52,7 @@ function App() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [tab, setTab] = useState("Home");
+  const [dealId, setDealId] = useState("")
   const [data, setData] = useState({
     home: homeData,
     weeklyMeeting: null,
@@ -79,6 +80,7 @@ function App() {
   };
 
   const openDealCompany = (id) => {
+    setDealId(id);
     const newData = data;
     //TODO switch to be dynamic
     newData.dealCompany = dealCompanyData;
@@ -92,6 +94,7 @@ function App() {
     { key: "Portfolio", icon: <PieChartIcon /> },
     { key: "Deals", icon: <WorkOutlineIcon /> },
   ];
+
   const Navigation = {
     Home: (
       <Home
@@ -109,7 +112,7 @@ function App() {
     ),
     Deals: <Deals />,
     PortfolioCompany: <PortfolioCompany {...data.portfolioCompany} />,
-    DealCompany: <DealCompany {...data.dealCompany} />,
+    DealCompany: <DealCompany {...{"dealId": dealId}} />,
   };
   console.log("hi again", data);
 

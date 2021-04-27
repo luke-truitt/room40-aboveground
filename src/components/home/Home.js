@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { useEffect, useState } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import {
   ThemeProvider,
@@ -19,6 +19,7 @@ import { primaryTheme } from "./../../utils/constants";
 import "./../../utils/global.css";
 import "./Home.css";
 import OpenInNewIcon from "@material-ui/icons/OpenInNew";
+import * as api from './../../utils/api/api';
 
 const {
   REACT_APP_API_BASE_URL,
@@ -37,17 +38,38 @@ const {
 } = process.env;
 
 const axios = require("axios");
-function GetActivities() {
-  axios
-    .get(REACT_APP_API_BASE_URL + REACT_APP_ACTIVITIES_URL)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-}
+
+
+
 function Home(props) {
+  const [loading, setLoading] = useState(true);
+  const [deals, setDeals] = useState([]);
+
+  useEffect(() => {
+    api.deal.GetDeals()
+    .then(function (response) {
+      let big_deals = response.data.data;
+      let company_ids = []
+      big_deals.forEach(d => {
+          company_ids.push(d.company_id);
+      });
+      const comp_id_str = company_ids.join(',');
+      let companies = {};
+      api.company.GetCompanies(comp_id_str).then(function (res) {
+          companies = res.data.data;
+          let i = 0;
+          big_deals.forEach(d => {
+              d.companyName = companies[i].name;
+              i = i + 1;
+          });
+          setDeals(big_deals)
+      })
+      })
+      .catch(function (error) {
+      console.log(error);
+      });
+}, []);
+
   const AgendaCard = () => {
     return (
       <Card raised className="home-agenda-card">
@@ -85,10 +107,10 @@ function Home(props) {
             hideFooterPagination
             density="compact"
             className="data-grid"
-            rows={props.deals.rows}
+            rows={deals}
             columns={props.deals.columns}
             autoPageSize
-            onCellClick={() => props.openDealCompany(0)}
+            onCellClick={(params) => props.openDealCompany(params.row.id)}
           />
         </CardContent>
       </Card>

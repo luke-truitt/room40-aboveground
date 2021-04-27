@@ -218,7 +218,7 @@ export const homeData = {
     },
   ],
   deals: {
-    columns: [{ field: "deals", headerName: "Company", width: 200 }],
+    columns: [{ field: "companyName", headerName: "Company", width: 200 }],
     rows: [
       {
         id: 1,

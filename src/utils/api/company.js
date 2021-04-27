@@ -5,26 +5,15 @@ const {
 
 const axios = require("axios");
 
-export function GetCompanies() {
-axios
-    .get(REACT_APP_API_BASE_URL + REACT_APP_COMPANY_URL)
-    .then(function (response) {
-    console.log(response);
-    })
-    .catch(function (error) {
-    console.log(error);
-    });
+export function GetCompanies(ids="") {
+return axios
+    .get(REACT_APP_API_BASE_URL + REACT_APP_COMPANY_URL, {params: {ids: ids}})
 }
 
 export function GetCompany(company_id) {
-axios
+return axios
     .get(REACT_APP_API_BASE_URL + REACT_APP_COMPANY_URL + "/" + company_id)
-    .then(function (response) {
-    console.log(response);
-    })
-    .catch(function (error) {
-    console.log(error);
-    });
+    
 }
 
 export function AddCompany(company) {

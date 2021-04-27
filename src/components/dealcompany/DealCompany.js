@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   ThemeProvider,
@@ -19,9 +19,32 @@ import Financing from "./Financing";
 import AddIcon from "@material-ui/icons/Add";
 import companyLogo from "./../../resources/images/guesthouse-logo.png";
 import Notes from "../Notes/Notes";
+import * as api from './../../utils/api/api';
 
 function DealCompany(props) {
-  console.log(props.notes);
+  
+  const [loading, setLoading] = useState(true);
+  const [deal, setDeal] = useState({});
+  const [company, setCompany] = useState({});
+
+  useEffect(() => {
+    api.deal.GetDeal(props.dealId)
+    .then(function (response) {
+      setDeal(response.data);
+      let _deal = response.data;
+      
+      api.company.GetCompany(_deal.company_id).then(function (res) {
+          setCompany(res.data);
+          console.log(company);
+      })
+      console.log(deal);
+      }
+      
+    )
+      .catch(function (error) {
+      console.log(error);
+      });
+}, [props.dealId]);
   const Overview = () => {
     return <div />;
   };
@@ -44,7 +67,8 @@ function DealCompany(props) {
         <Box className="portco-overview-top cols">
           {/*TODO Fix to be dynamic*/}
           <Box className="portco-logo-box">
-            <img className="portco-logo" src={props.overview.logo} />
+            {/* <img className="portco-logo" src={props.overview.logo} /> */}
+            <span className="portco-overview-label">{company.name}</span>
           </Box>
           <Box className="portco-overview-buttons rows">
             <Button
@@ -68,16 +92,16 @@ function DealCompany(props) {
         <Box className="portco-overview-bottom">
           <Typography variant="body">
             <span className="portco-overview-label">Deal Team: </span>
-            {props.overview.dealTeam}
+            {/* {props.overview.dealTeam} */}
             <br />
             <span className="portco-overview-label">Traction: </span>
-            {props.overview.traction}
+            {/* {props.overview.traction} */}
             <br />
             <span className="portco-overview-label">Terms: </span>
-            {props.overview.terms}
+            {/* {props.overview.terms} */}
             <br />
             <span className="portco-overview-label">Co-Investors: </span>
-            {props.overview.coinvestors}
+            {/* {props.overview.coinvestors} */}
             <br />
           </Typography>
         </Box>

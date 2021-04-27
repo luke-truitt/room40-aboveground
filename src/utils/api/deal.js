@@ -1,3 +1,5 @@
+import * as company from './company';
+
 const {
     REACT_APP_API_BASE_URL,
     REACT_APP_DEAL_URL,
@@ -5,26 +7,15 @@ const {
 
 const axios = require("axios");
 
+export function GetDealCompanies() {
+    return axios.get(REACT_APP_API_BASE_URL + REACT_APP_DEAL_URL)
+}
 export function GetDeals() {
-axios
-    .get(REACT_APP_API_BASE_URL + REACT_APP_DEAL_URL)
-    .then(function (response) {
-    console.log(response);
-    })
-    .catch(function (error) {
-    console.log(error);
-    });
+    return axios.get(REACT_APP_API_BASE_URL + REACT_APP_DEAL_URL);
 }
 
 export function GetDeal(deal_id) {
-axios
-    .get(REACT_APP_API_BASE_URL + REACT_APP_DEAL_URL + "/" + deal_id)
-    .then(function (response) {
-    console.log(response);
-    })
-    .catch(function (error) {
-    console.log(error);
-    });
+    return axios.get(REACT_APP_API_BASE_URL + REACT_APP_DEAL_URL + "/" + deal_id)  
 }
 
 export function AddDeal(deal) {

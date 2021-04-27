@@ -10,5 +10,3 @@ export * as note from "./note";
 export * as user_company from "./user_company";
 export * as user from "./user";
 export * as vote from "./vote";
-
-
