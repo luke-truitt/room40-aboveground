@@ -42,6 +42,7 @@ import {
   portfolioCompanyData,
   portfolioData,
   dealCompanyData,
+  weeklyMeetingData,
 } from "./utils/Data";
 import WeeklyMeeting from "./components/weeklymeeting/WeeklyMeeting";
 import * as api from "./utils/api";
@@ -54,7 +55,7 @@ function App() {
   const [tab, setTab] = useState("Home");
   const [data, setData] = useState({
     home: homeData,
-    weeklyMeeting: null,
+    weeklyMeeting: weeklyMeetingData,
     portfolio: portfolioData,
     portfolioCompany: null,
     deals: null,
@@ -101,7 +102,7 @@ function App() {
         openDealCompany={openDealCompany}
       />
     ),
-    "Weekly Meeting": <WeeklyMeeting />,
+    "Weekly Meeting": <WeeklyMeeting {...data.weeklyMeeting} />,
     Portfolio: (
       <Portfolio
         {...data.portfolio}

@@ -7,6 +7,7 @@
 
 .note-edit-panel-active-buttons {
   justify-content: flex-end;
+  margin-top: 10px;
 }
 .note-edit-panel {
   justify-content: flex-end;
@@ -15,12 +16,24 @@
 }
 .edit-button {
   color: #ff6762 !important;
+  background-color: transparent !important;
+  border-color: #ff6762 !important;
+  font-weight: 700 !important;
 }
+
 .save-button {
-  color: #ff6762 !important;
+  background-color: #ff6762 !important;
+  color: #fafafa !important;
+  font-weight: 700 !important;
+  justify-content: space-between;
+  margin-bottom: 10px !important;
+  margin-left: 10px !important;
 }
 .cancel-button {
-  color: #ffffff !important;
+  color: #ff6762 !important;
+  background-color: transparent !important;
+  border-color: #ff6762 !important;
+  font-weight: 700 !important;
 }
 .note-text-field p {
   margin: 0 !important;

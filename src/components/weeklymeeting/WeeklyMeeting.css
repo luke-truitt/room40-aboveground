@@ -6,17 +6,48 @@ h4.weekly-meeting-title {
   width: 100%;
 }
 
-.meeting-notes-text-field textarea {
-  height: 30vh !important;
-}
-
-.notes-data-grid {
-  width: 60%;
-}
 .notes-todos {
-  width: 30%;
+  width: 40%;
+  margin-right: 1rem;
 }
 
 .notes-box-top {
   justify-content: space-between;
+  height: 30vh;
+}
+.notepad-text-field > * fieldset {
+  border-color: transparent !important;
+}
+
+.notes-dg-card {
+  width: 60%;
+  margin-left: 0.5rem;
+}
+.notes-box-bottom {
+  margin-top: 1rem;
+}
+
+.notepad-box {
+  max-height: 40vh;
+  overflow-y: scroll;
+}
+
+.notes-dg-card {
+  overflow-y: scroll;
+}
+
+.week-agenda-item > span {
+  padding-right: 5px !important;
+  padding-bottom: 5px !important;
+  padding-top: 5px !important;
+}
+.vote-button {
+  color: white !important;
+  justify-self: center;
+  margin: auto;
+}
+
+.vote-button > * {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }

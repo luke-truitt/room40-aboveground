@@ -330,3 +330,37 @@ export const portfolioData = {
     est in tortor convallis congue non et risus.",
   lastUpdated: new Date(),
 };
+
+export const weeklyMeetingData = {
+  notes: {
+    portfolio: {
+      rows: [
+        { id: 1, company: "Braid", todo: "Many many things" },
+        { id: 2, company: "Braid", todo: "Many many things" },
+        { id: 3, company: "Braid", todo: "Many many things" },
+        { id: 4, company: "Braid", todo: "Many many things" },
+      ],
+      columns: [
+        { field: "company", headerName: "Company", width: 200 },
+        { field: "todo", headerName: "TODO", width: 400 },
+      ],
+    },
+    todos: ["Eat cake", "Cry a lot", "Celebrate"],
+  },
+  initialVotes: {
+    rows: [
+      { id: 1, deal: "Company", vote: "", status: "Not Started" },
+      { id: 2, deal: "Company", vote: "", status: "Not Started" },
+      { id: 3, deal: "Company", vote: "", status: "Not Started" },
+      { id: 4, deal: "Company", vote: "", status: "Not Started" },
+    ],
+  },
+  finalVotes: {
+    rows: [
+      { id: 1, deal: "Company", vote: "", status: "Not Started" },
+      { id: 2, deal: "Company", vote: "", status: "Not Started" },
+      { id: 3, deal: "Company", vote: "", status: "Not Started" },
+      { id: 4, deal: "Company", vote: "", status: "Not Started" },
+    ],
+  },
+};
